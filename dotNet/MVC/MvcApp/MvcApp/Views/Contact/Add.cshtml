@@ -1,0 +1,42 @@
+﻿@using MvcApp.Models.Contact
+@model AddVm
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+    <div> 
+        <h1>Add page...</h1>
+        @using (Html.BeginForm("Add", "Contact", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <th>Enter FirstName:</th><td>@Html.TextBoxFor((m)=>m.Fname)</td>
+                </tr>
+                <tr>
+                    <th>Enter LastName:</th>
+                    <td>@Html.TextBoxFor((m) => m.Lname)</td>
+                </tr>
+                <tr>
+                    <th>Enter Contact No:</th>
+                    <td>@Html.TextBoxFor((m) => m.ContactNo)</td>
+                </tr>
+                <tr>
+                    <th>Enter Email:</th>
+                    <td>@Html.TextBoxFor((m) => m.Email)</td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value=" Add"/>
+            </div>
+        }
+    </div>
+</body>
+</html>

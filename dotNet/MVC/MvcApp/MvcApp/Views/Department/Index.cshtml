@@ -1,0 +1,64 @@
+﻿@using MvcApp.Models.Dept
+@model DeptVm
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+   
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "Department", FormMethod.Post))
+        {
+
+            @Html.DropDownListFor((m) => m.SelectedDeptNo, new SelectList(Model.DeptList, "DeptNo", "DeptName"))
+            <input type="submit" value="Show" />
+
+        }
+    </div>
+    <div>
+        <h1>Department no :@Model.SelectedDeptNo</h1>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Deptno</th>
+                <th>Job</th>
+                <th>Salary</th>
+            </tr>
+            @{ 
+                int i = 0;
+                foreach (var emp in @Model.SelectEmpList)
+                {
+                    <tr>
+                        <td>
+                            @emp.EmpName
+                        </td>
+                        <td>
+                            @emp.EmpDeptNo
+                        </td>
+                        <td>
+                            @emp.EmpJob
+                        </td>
+                        <td>
+                            @emp.EmpSal
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+            
+          
+
+
+        </table>
+    </div>
+</body>
+</html>

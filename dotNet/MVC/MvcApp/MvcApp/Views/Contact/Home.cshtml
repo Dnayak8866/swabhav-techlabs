@@ -1,0 +1,58 @@
+﻿@using MvcApp.Models.Contact
+@model ContactVm
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+</head>
+<body>
+    <div> 
+        <h1>Contact home..</h1>
+        <div class="top-right">
+            @Html.ActionLink("ADD", "Add");
+            @Html.ActionLink("DISPLAY", "Display");
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>ContactNo</th>
+                    <th>Email</th>
+                </tr>
+                @{
+                    int i = 0;
+                    foreach (var contact in @Model.ContactList)
+                    {
+                        <tr>
+                            <td>
+                                @contact.Fname
+                            </td>
+                            <td>
+                                @contact.Lname
+                            </td>
+                            <td>
+                                @contact.contactNo
+                            </td>
+                            <td>
+                                @contact.email
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+
+
+
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

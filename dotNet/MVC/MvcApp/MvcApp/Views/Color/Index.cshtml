@@ -1,0 +1,29 @@
+﻿@using MvcApp.Models.Color
+@model ColorVm
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body bgcolor="@Model.SelectedColorCode">
+    <div>
+        @using (Html.BeginForm("Index", "Color", FormMethod.Post))
+        {
+            <h1> No of colors: @Model.ColorCount</h1>
+            @Html.DropDownListFor((m) => m.SelectedColorCode, new SelectList(Model.ColorList, "Code", "Name"))
+           
+            <input type="submit" value="Apply" />
+
+        }
+        <div>
+            <h1>Selected color is @Model.SelectedColorName | @Model.SelectedColorCode</h1>
+        </div>
+    </div>
+</body>
+</html>

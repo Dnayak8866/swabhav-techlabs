@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPageEmpDept.master.cs" Inherits="MasterPageEmpDept" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+          <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
+                <Items>
+                    <asp:MenuItem NavigateUrl="Department.aspx" Text="Department" Value="Department"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="Employee.aspx" Text="Employee" Value="Employee"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/Login.aspx" Text="Login" Value="login"></asp:MenuItem>
+                </Items>
+            </asp:Menu>
+    <div>
+        
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+          
+        
+           
+        
+          
+        
+        </asp:ContentPlaceHolder>
+          <asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
+        
+          
+        
+           
+        
+          
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

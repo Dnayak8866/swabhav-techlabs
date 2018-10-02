@@ -1,0 +1,40 @@
+﻿@using MvcApp.Models.Login;
+@model LoginVm
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <h1>Login page.....</h1>
+        <h1>@Model.UserName</h1>
+        <h1>@Model.UserPass</h1>
+      
+        @using (Html.BeginForm("Index","Login",FormMethod.Post))
+        {
+            <div>
+                Enter Name: @Html.TextBoxFor((x) => x.UserName)
+                
+            </div>
+            <div>
+                Enter Password:@Html.PasswordFor((x) => x.UserPass)
+            </div>
+            <div>
+                <input type="submit" value="login" />
+            </div>
+           
+           
+            
+        }
+
+
+    </div>
+</body>
+</html>

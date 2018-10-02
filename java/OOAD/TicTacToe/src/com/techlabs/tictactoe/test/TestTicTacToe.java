@@ -25,8 +25,8 @@ public class TestTicTacToe {
 		while (game.getGameStatus() == GameStatus.ONGOING) {
 
 			
-			System.out.println("\nHey " + game.getCurrentPlayer().getName() + " its your turn");
-			System.out.println("Enter your " +game.getCurrentPlayer().getMark()+ " position:");
+			System.out.println("\nHey " + game.getPlayerTurn().getName() + " its your turn");
+			System.out.println("Enter your " +game.getPlayerTurn().getMark()+ " position:");
 			Scanner sc1 = new Scanner(System.in);
 			int position = sc1.nextInt();
 			game.play(position);	
