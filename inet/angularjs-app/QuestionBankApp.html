@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!--angularjs-->
+  <script src="js/angular.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+</head>
+
+<body ng-app="questionAnswers" ng-controller="questionsController">
+  <header>
+    <div class="text-center">
+      <h1 style="color:dodgerblue">...........Welcome to Question Answer Quiz.............</h1>
+    </div>
+
+  </header>
+
+  <section>
+    <div class="text-center" ng-model="index" class="text-info" id="question" style="color:darkslategrey;font-size: 50px">{{(index
+      + 1) + ": " + Questions[index].title}}</div>
+  </section>
+
+  <section class="d-flex justify-content-center">
+    <!--answers options -->
+    <div class="text-center" id="options">
+      <input ng-model="radioVal" ng-click="enableNextButton()" ng-value="Questions[index].options[optionIndex]" name="radio"
+        ng-style="{'margin-right':'10px','margin-left':'30px'}" type="radio">{{Questions[index].options[optionIndex]}}
+      <input ng-model="radioVal" ng-value="Questions[index].options[optionIndex+1]" name="radio" ng-style="{'margin-right':'10px','margin-left':'30px'}"
+        type="radio">{{Questions[index].options[optionIndex+1]}}
+      <input ng-model="radioVal" ng-value="Questions[index].options[optionIndex+2]" name="radio" ng-style="{'margin-right':'10px','margin-left':'30px'}"
+        type="radio">{{Questions[index].options[optionIndex+2]}}
+      <input ng-model="radioVal" ng-value="Questions[index].options[optionIndex+3]" name="radio" ng-style="{'margin-right':'10px','margin-left':'30px'}"
+        type="radio">{{Questions[index].options[optionIndex+3]}}
+    </div>
+
+  </section>
+  <footer>
+
+    <div class="text-center">
+      <button type="button" ng-disabled="isdisabled" id="btnNext" class="btn btn-success" style="margin-top:40px"
+        ng-click="generatequestion()">Next</button>
+    </div>
+
+    <h1>{{radioVal}}</h1>
+  </footer>
+
+
+
+  <script>
+
+    angular.module('questionAnswers', [])
+      .controller('questionsController', function ($scope) {
+        $scope.isdisabled = true;
+        $scope.radioVal;
+        $scope.index = 0;
+        $scope.optionIndex = 0;
+        $scope.selectedAnswers = [];
+        $scope.points = 0;
+        $scope.isHideRadioDiv;
+
+        $scope.Questions = [
+          {
+            id: 1,
+            title: "World’s first artificial satellite was?",
+            answer: "Sputnik I",
+            options: ["Satnek", "Sputnik I", "Rubnik", "Satneo"]
+          },
+          {
+            id: 2,
+            title: "How big is the SAHARA DESERT in African continent?",
+            answer: "9,200,000sqkm",
+            options: ["9,200,000sqkm", "9,800,000sqkm", "8,200,000sqkm", "9,700,000sqkm"]
+          },
+          {
+            id: 3,
+            title: "When the World Environment Day observed worldwide every year?",
+            answer: "5june",
+            options: ["5jan", "5june", "4june", "5july"]
+          },
+          {
+            id: 4,
+            title: "The Biggest island in the world?",
+            answer: "Greenland",
+            options: ["Greenland", "Scotland", "Whiteisland", "Newland"]
+          },
+          {
+            id: 5,
+            title: "In which indian state is the sun temple of konark located?",
+            answer: "Odisha",
+            options: ["Gujarat", "Delhi", "Odisha", "Bihar"]
+          }
+        ];
+
+        $scope.generatequestion = function () {
+          console.log("inside generatequestion");
+          console.log("after next click index :",$scope.index);
+
+          $scope.showQuestions($scope.index);
+        }
+
+        $scope.storeSelectedAnswers = function (index, noQuestions) {
+          var x = true;
+          var noQuestions = $scope.Questions.length;
+
+          $scope.selectedAnswers.push($scope.radioVal);
+
+          console.log("inside selected answer", $scope.selectedAnswers);
+          if (index == 4) {
+
+            var questionSection = angular.element(document.querySelector('#question'));
+            var answerSection = angular.element(document.querySelector('#options'));
+            var btn = angular.element(document.querySelector('#btnNext'));
+
+            questionSection.empty();
+
+            //questionSection.style.display = "none";
+            answerSection.empty();
+            //answerSection.style.display = "none";
+            btn.html("SeeResult");
+            $scope.enableNextButton();
+
+
+            return x;
+          }
+
+        };
+        $scope.showQuestions = function (index) {
+          $scope.disableNextButton();
+          var noQuestions = $scope.Questions.length;
+
+          if (index < noQuestions) {
+            console.log("Inside showquestion");
+            $scope.isToReturn = $scope.storeSelectedAnswers(index, noQuestions);
+            $scope.index++;
+            console.log("No Quests", noQuestions);
+            console.log("index", $scope.index);
+          } else {
+            console.log("Result section");
+          }
+
+
+
+        }
+
+        $scope.enableNextButton = function () {
+          $scope.isdisabled = false;
+        }
+
+        $scope.disableNextButton = function () {
+          $scope.isdisabled = true;
+        }
+
+
+
+
+      });
+
+  </script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

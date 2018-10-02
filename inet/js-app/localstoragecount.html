@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <div id ="local-data">
+        </div>
+
+        </div>
+        <script>
+            
+          if(localStorage.getItem("count")==1){
+                localStorage.removeItem("First Name");
+                localStorage.removeItem("count");
+                document.getElementById("local-data").innerHTML="....Local data succefully deleted....";
+            }
+            else{
+                if(typeof(Storage)!=="undefined"){
+                    localStorage.setItem("count",1);
+                    localStorage.setItem("First Name","Dharmesh");
+                    var val= localStorage.getItem("First Name");
+                    document.getElementById("local-data").innerHTML=val;
+                }
+               
+            }     
+        </script>
+    </body>
+</html>

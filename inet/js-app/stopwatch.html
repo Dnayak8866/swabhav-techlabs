@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+
+  <!--jQuery-->
+  <script src="jquery.js"></script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <section class="d-flex justify-content-center container " style="margin-top:50px">
+    <h1 id="timeText" style="font-family:Verdana;font-size:150px;color:cyan">00:00:00:00</h1>
+
+
+  </section>
+
+  <section id="btnStartGame" style="margin-top:70px">
+    <div class="text-center m-auto" >
+      <button id="btnPause" type="button" class="btn btn-info">Pause</button>
+      <button id="btnReset" type="button" class="btn btn-info">Reset</button>
+      <button id="btnStart" type="button" class="btn btn-info">Start</button>
+      <button id="btnLap" type="button" class="btn btn-info">Lap</button>
+    </div>
+  </section>
+
+  <section id="lapSection" class=" container " style="margin-top:50px">
+    
+  </section>
+
+  <script>
+    (function () {
+      var milisec = 0, sec = 0, min = 0, hour = 0, time;
+      var setTimer;
+      $("document").ready(function () {
+
+        startTimer();
+        $("#btnReset").on("click", function () {
+          clearInterval(setTimer);
+          milisec = 0, sec = 0, min = 0, hour = 0;
+          time="00:00:00:00";
+          $("#timeText").html('<h1 id="timeText" style="font-family:Verdana;font-size:150px;color:cyan">' + '00:00:00:00' + '</h1>');
+        });
+
+        $("#btnStart").on("click", function () {
+          setTimeout(startTimer, 500);
+        });
+
+        $("#btnPause").on("click",function(){
+          clearInterval(setTimer);
+          $("#timeText").html(time);
+        });
+
+        $("#btnLap").on("click",function(){
+          $("#lapSection").append('<h6 class="text-center" id="timeText" style="font-family:Verdana;font-size:20px;color:green">' +time + '</h6>'+'<br>');
+        });
+
+
+      });
+
+      function startTimer() {
+        setTimer = setInterval(function () {
+          milisec++;
+
+          console.log(sec);
+          if (milisec == 99) {
+            milisec = 0;
+            sec++;
+
+          } else if (sec > 60) {
+            min++;
+            sec = 0;
+          } else if (min > 60) {
+            hour++;
+            min = 0;
+          }
+
+          time = (hour < 10 ? ("0" + hour) : hour) + ":" + (min < 10 ? ("0" + min) : min) + ":" + (sec < 10 ? ("0" + sec) : sec) + ":" + (milisec < 10 ? ("0" + milisec) : milisec);
+          document.getElementById("timeText").innerHTML = time;
+        }, 10);
+      }
+    })();
+
+
+  </script>
+
+
+  <!-- Optional JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

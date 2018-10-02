@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!--jQuery-->
+  <script src="jquery.js"></script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <header>
+    <div class="text-center">
+      <h1 style="color:dodgerblue">...........Welcome to Question Answer Quiz.............</h1>
+    </div>
+
+  </header>
+
+  <section>
+    <div class="text-center" class="text-info" id="question" style="color:darkslategrey;font-size: 50px"></div>
+  </section>
+
+  <section>
+    <!--answers options -->
+    <div class="text-center" id="options"></div>
+  </section>
+
+
+
+  <footer>
+
+    <div class="text-center">
+      <button type="button" id="btnNext" class="btn btn-success" style="margin-top:40px" onclick="generatequestion()">Next</button>
+    </div>
+    <div id="resultSection" class="text-center" style="margin-top:30px">
+      <h3 id="resultText">Results will be show in the Box</h3>
+      <canvas id="mycanvas" width="500" height="500" style="border:1px solid " visible:false></canvas>
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+   
+    var index = 0;
+    var selectedAnswers = [];
+    var points = 0;
+    var c = document.getElementById("mycanvas");
+    var ctx = c.getContext("2d");
+    var btnNext = $("#btnNext");
+
+    var Questions = [
+      {
+        id: 1,
+        title: "World’s first artificial satellite was?",
+        answer: "Sputnik I",
+        options: ["Satnek", "Sputnik I", "Rubnik", "Satneo"]
+      },
+      {
+        id: 2,
+        title: "How big is the SAHARA DESERT in African continent?",
+        answer: "9,200,000sqkm",
+        options: ["9,200,000sqkm", "9,800,000sqkm", "8,200,000sqkm", "9,700,000sqkm"]
+      },
+      {
+        id: 3,
+        title: "When the World Environment Day observed worldwide every year?",
+        answer: "5june",
+        options: ["5jan", "5june", "4june", "5july"]
+      },
+      {
+        id: 4,
+        title: "The Biggest island in the world?",
+        answer: "Greenland",
+        options: ["Greenland", "Scotland", "Whiteisland", "Newland"]
+      },
+      {
+        id: 5,
+        title: "In which indian state is the sun temple of konark located?",
+        answer: "Odisha",
+        options: ["Gujarat", "Delhi", "Odisha", "Bihar"]
+      }
+    ];
+
+    (function () {
+     
+      showQuestion(index);
+    })();
+
+
+    function generatequestion() {
+      showQuestion(this.index);
+    }
+
+
+    function showQuestion(index) {
+      disableNextButton();
+      var noQuestions = Questions.length;
+      if (this.index <= noQuestions) {
+
+        var isToReturn = storeSelectedAnswers(index, noQuestions);
+        if (isToReturn) {
+          return
+        }
+        $("#question").html((this.index + 1) + ": " + Questions[index].title);
+        // document.getElementById("question").innerHTML = (this.index + 1) + ": " + Questions[index].title;
+        var optionNode = $("#options");
+        // var optionNode = document.getElementById("options");
+        optionNode.empty();
+
+        /* while (optionNode.firstChild) {
+           optionNode.removeChild(optionNode.firstChild);
+         }*/
+
+
+        for (var i = 0; i < 4; i++) {
+          var radio = $('<input type="radio" name="radio" />');
+          radio.attr("id",1);
+          radio.attr("value",Questions[index].options[i]);
+          radio.attr("style", "margin-right: 10px; margin-left:30px");
+          radio.click(enableNextButton);
+         
+        
+          /*      var radio = document.createElement("INPUT");
+                radio.setAttribute("id", i);
+                radio.setAttribute("type", "radio");
+                radio.setAttribute("value", Questions[index].options[i]);
+                radio.setAttribute("name", "radio");
+                radio.setAttribute("style", "margin-right: 10px; margin-left:30px");
+                radio.setAttribute("onclick", "enableNextButton()"); */
+       
+
+          optionNode.append(radio);
+       //   var answertext = $(document.createTextNode(Questions[index].options[i] + "  "));
+         var answertext = document.createTextNode(Questions[index].options[i] + "  ");
+          optionNode.append(answertext);
+          //  optionNode.appendChild(answertext);
+
+        }
+        this.index++;
+      } else {
+       
+        var resultHeading = $("#resultText");
+        console.log("result here");
+        var result = checkResult();
+        var percent = (result / noQuestions) * 100;
+        if (percent > 50) {
+          resultHeading.html("Congratulation you have passed this Quiz");
+          //  document.getElementById("resultText").innerHTML = "Congratulation you have passed this Quiz ";
+        } else {
+          resultHeading.html("Oops you did not clear this Quiz");
+          //  document.getElementById("resultText").innerHTML = "Oops you did not clear this Quiz "
+        }
+        console.log("percent" + percent);
+        createArc(this.ctx, 0, percent * 0.01, "green");
+        createArc(this.ctx, percent * 0.01, 1, "red");
+        console.log(result);
+
+      }
+
+    }
+
+    function storeSelectedAnswers(index, noQuestions) {
+
+      var x = true;
+      if (index != 0 && index <= noQuestions) {
+        var value = $('input[name="radio"]:checked').val();
+        // var value = document.querySelector('input[name="radio"]:checked').value;
+
+        selectedAnswers.push(value);
+
+        console.log(selectedAnswers);
+        if (index == 5) {
+          var questionSection = $("#question");
+          var answerSection = $("#options");
+          var btn = $("#btnNext");
+          questionSection.hide();
+          //questionSection.style.display = "none";
+          answerSection.hide();
+          //answerSection.style.display = "none";
+          btn.html("SeeResult");
+          enableNextButton();
+
+          this.index = this.index + 2;
+          return x;
+        }
+      }
+    }
+
+    function checkResult() {
+
+      for (i = 0; i < Questions.length; i++) {
+        if (selectedAnswers[i] == Questions[i].answer) {
+          this.points++;
+        }
+      }
+      return this.points;
+      // console.log(this.points);
+    }
+
+    function createArc(ctx, x, y, color) {
+
+      ctx.beginPath();
+      ctx.moveTo(250, 250);
+      ctx.arc(250, 250, 150, 2 * Math.PI * x, 2 * Math.PI * y);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    function disableNextButton() {
+      btnNext.prop("disabled", true);
+      //     var btnNext1 = document.getElementById("btnNext");
+      //   btnNext1.disabled = true;
+    }
+
+    function enableNextButton() {
+      btnNext.prop("disabled", false);
+      //     var btnNext2 = document.getElementById("btnNext");
+      //     btnNext2.disabled = false;
+    }
+
+  </script>
+  <!-- Optional JavaScript -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

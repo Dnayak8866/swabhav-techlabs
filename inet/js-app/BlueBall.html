@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+
+    <!--jQuery-->
+    <script src="jquery.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <h2 class="text-center" style="color:dodgerblue">Lets Play BlueBall Game</h2>
+    </header>
+    <section id="gameDescription" class="d-flex justify-content-center container">
+        <div class="text-center" class="text-info" style="color: grey;align-content: center">
+            <h3>Hello player you have to pick one of the ball if the ball color shows
+                <span style="color:red"> Red </span>then your selected ball number is less than the original ball and if
+                it is
+                <span style="color:green">Green</span>
+                the you are close to the original ball.So,guess the ball,good luck.
+            </h3>
+        </div>
+    </section>
+
+    <section id="gameboard" class="d-flex justify-content-center">
+        <div id="ball" style="width:350px"></div>
+    </section>
+
+    <section id="btnStartGame" style="margin-top:70px">
+        <div class="text-center">
+            <button id="StartGame" type="button" class="btn btn-info">StartGame</button>
+        </div>
+    </section>
+
+    <section id="resultSection" style="margin-top:30px">
+        <h2 class="text-center" id="result"></h2>
+    </section>
+
+    <section id="btnStartGame" style="margin-top:30px ; margin-bottom: 10px">
+        <div class="text-center">
+            <button id="RestartGame" type="button" class="btn btn-info">RestartGame</button>
+        </div>
+    </section>
+
+
+    <script>
+        (function () {
+
+            var randomBallId = Math.ceil(Math.random() * 26);
+            var noChance = 0;
+            var isToPlay = true;
+            $("#StartGame").on("click", function () {
+                $(this).fadeOut(2000);
+                setTimeout(startGame, 2000);
+
+            });
+            $("#RestartGame").hide();
+            //document.getElementById("RestartGame").style.display = "none";
+            console.log(randomBallId);
+            function startGame() {
+                var btnStart = $("#btnStartGame");
+                // var btnStart = document.getElementById("btnStartGame");
+
+                // btnStart.style.display = "none";
+                btnStart.hide();
+
+                /*  if (btnStart.firstChild) {
+                      btnStart.removeChild(btnStart.firstChild);
+                  }
+                  */
+                btnStart.remove();
+
+                removeDescriptionSection();
+                createGameBoard();
+            }
+
+            function removeDescriptionSection() {
+                var descrpSection = $("#gameDescription");
+                //  var descrpSection = document.getElementById("gameDescription");
+                descrpSection.hide();
+                // descrpSection.style.display = "none";
+
+                descrpSection.remove();
+                /* if (descrpSection.firstChild) {
+                     descrpSection.removeChild(descrpSection.firstChild);
+                 } */
+            }
+
+            function createGameBoard() {
+                for (i = 1; i <= 25; i++) {
+
+                    var ballNode = $("#ball");
+                    //  var ballNode = document.getElementById("ball");
+                    var btn = $("<button></button>").text(i);
+                    //  var btn = document.createElement("button");
+                    btn.addClass("btn m-2");
+                    // btn.setAttribute("class", "btn m-2");
+                    btn.attr("id", i);
+                    // btn.setAttribute("id", i);
+                    btn.css({ "border-radius": "50%", "width": "50px", "height": "50px", "background-color": "grey", "color": "white" });
+                    //  btn.setAttribute("style", "border-radius:50%;width:50px;height:50px ;background-color:grey;color:white");
+                    btn.click(guess);
+                    //btn.addEventListener("click", guess);
+
+                    //  var btntext = document.createTextNode(i);
+
+                    //   btn.appendChild(btntext);
+              //      btn.hide().fadeIn(1000);
+                       ballNode.hide().append(btn).fadeIn(1000);
+                    
+                 //   ballNode.append(btn);
+                    //   ballNode.fade
+
+
+                }
+
+            }
+
+            function guess() {
+                var result = $("#result");
+                var btnRestart = $("#RestartGame");
+                if (!isToPlay) {
+                    return;
+                }
+
+                var btnId = this.id;
+                console.log("button Clicked", btnId);
+
+                if (btnId > randomBallId) {
+                    isToPlay = true;
+                    $(this).css({ "border-radius": "50%", "width": "50px", "height": "50px", "background-color": "green" });
+                    //   this.setAttribute("style", "border-radius:50%;width:50px;height:50px;background-color: green");
+                } else if (btnId == randomBallId) {
+
+                    isToPlay = false;
+                    result.html("Congratulation you guessed it correct...");
+                    //  document.getElementById("result").innerHTML = "Congratulation you guessed it correct...";
+                    $(this).css({ "border-radius": "50%", "width": "50px", "height": "50px", "background-color": "blue" });
+                    //   this.setAttribute("style", "border-radius:50%;width:50px;height:50px;background-color: blue");
+                    alert("Hey you picked the correct one congratulations...");
+                    btnRestart.hide();
+                    //  btnRestart.style.display = "inline";
+                    btnRestart.click(restartGame);
+                    //  btnRestart.addEventListener("click", restartGame);
+                    return;
+                } else {
+                    isToPlay = true;
+                    $(this).css({ "border-radius": "50%", "width": "50px", "height": "50px", "background-color": "red" });
+                    //   this.setAttribute("style", "border-radius:50%;width:50px;height:50px;background-color: red");
+                }
+                noChance++;
+                result.html("You tried for" + noChance + " times " + " only " + (4 - noChance) + "left");
+                // document.getElementById("result").innerHTML = "You tried for" + noChance + " times " + " only " + (4 - noChance) + "left";
+                if (noChance == 4) {
+                    isToPlay = false;
+                    result.html("Sorry,You exceeded the limits to try...");
+                    console.log("Guess limit exceed");
+                    btnRestart.show().click(restartGame);
+                    //  btnRestart.style.display = "inline";
+                    // btnRestart.addEventListener("click", restartGame);
+                    return;
+                }
+
+            }
+            function restartGame() {
+                console.log("inside restart");
+                location.reload();
+            }
+        })();
+
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!--jQuery-->
+    <script src="jquery.js"></script>
+    <!--moment-->
+    <script src="moment.js"></script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <section class="d-flex justify-content-center">
+        <h2 style="color:teal">Test a number through NumbersApi </h2>
+    </section>
+
+    <section class="d-flex justify-content-center container " style="margin-top:20px">
+        <input class="form-control" id="inputNumber" type="number" placeholder="Enter a number">
+        <button class="btn btn-info" style="margin-left:10px" id="btnGetFacts">GetFacts</button>
+    </section>
+    <h3 style="color:teal; margin-left:20px" >Recent Searches</h3>
+
+    <section id="data" class="d-flex justify-content-center container" style="margin-top:20px">
+        <ul id="dataList">
+
+        </ul>
+    </section>
+    <script>
+        (function () {
+            var allData = [];
+            var date = new Date();
+            //localStorage.clear();
+            $("document").ready(function () {
+                getAllSearch();
+                $("#btnGetFacts").click(function () {
+                    var input = $("#inputNumber").val();
+                    //console.log(input);
+                    $.ajax({
+                        type: "GET",
+                        data: input,
+                        url: "http://numbersapi.com/" + input,
+                        success: function (result) {
+
+                            var data = {
+                                reqNo: "",
+                                responseFrom: "",
+                                time: ""
+                            };
+                            data.reqNo = input;
+                            data.responseFrom = result;
+                            data.time = moment().format('LTS');
+                            console.log(data.time);
+                            console.log(data.responseFrom);
+                            allData.push(data);
+
+                            if (typeof (Storage) !== "undefined") {
+
+                                localStorage.setItem("api-data", JSON.stringify(allData));
+                                console.log(localStorage.getItem("api-data"));
+                            }
+                            $("#data ul").append('<li>' + result + '</li>');
+                            //  console.log(result);
+                        }
+
+                    });
+                });
+            });
+
+            function getAllSearch() {
+                if (localStorage.getItem("api-data") != null) {
+                    allData = JSON.parse(localStorage.getItem("api-data"));
+                }
+                var dataArray = JSON.parse(localStorage.getItem("api-data"));
+                console.log(dataArray);
+                if (dataArray != null) {
+                    var l = dataArray.length;
+                    console.log("array lenth", l);
+
+                    for (var i = 0; i < l; i++) {
+                        var value = dataArray[i].responseFrom;
+                        var time = dataArray[i].time;
+                        $("#data ul").prepend('<li>' + value + '<span style="color:green; font-size:20px">' + "[searched at " + time + " ]" + '</span>' + '</li>');
+                    }
+                }
+                else {
+                    console.log("No item in storage");
+                }
+            }
+        })();
+    </script>
+
+    <!-- Optional JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

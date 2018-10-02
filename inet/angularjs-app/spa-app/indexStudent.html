@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--angularjs-->
+    <script src="angular.js"></script>
+    <script src="angular-route.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+</head>
+
+
+<body ng-app="student">
+    <section ng-view>
+
+    </section>
+    <script>
+        angular.module('student', ['ngRoute'])
+            .factory('studentService', function () {
+                var obj = {};
+
+                var students = [
+                    {
+                        id: "123",
+                        name: "Dharmesh"
+                    },
+                    {
+                        id: "111",
+                        name: "chandan"
+                    }
+                ];
+                obj.getAllStudent = function () {
+                    return students;
+                };
+                obj.getById = function (id) {
+                    for (let student in students) {
+                        if (student.id == id) {
+                            return student;
+                        }
+                    }
+                };
+                obj.delete = function (ID) {
+                    for (let index = 0; index < students.length; index++) {
+                        if (students[index].id == ID) {
+                            if (confirm("Are you sure you want to Delete....")) {
+                                students.splice(index, 1);
+                            } else {
+                               
+                            }
+                            
+                        }
+                    }
+
+                };
+                obj.update = function (nameToUpdate, ID) {
+                    console.log(nameToUpdate, ID);
+                    for (let index = 0; index < students.length; index++) {
+                        if (students[index].id == ID) {
+                            students[index].name = nameToUpdate;
+                        }
+                    }
+
+                };
+                obj.add = function (newName, newid) {
+                    var student = {
+                        id: newid,
+                        name: newName
+                    };
+                    students.push(student);
+                };
+                return obj;
+            })
+            .config(function ($routeProvider) {
+                $routeProvider.when("/", {
+                    controller: "studentHome",
+                    templateUrl: 'studentHomePage.html'
+                }).when('/addStudent', {
+                    controller: "addStudent",
+                    templateUrl: 'templates/addStudent.html'
+                }).when('/editStudent', {
+                    controller: 'updateStudent',
+                    templateUrl: 'templates/editStudent.html'
+                }).when('/deleteStudent', {
+                    controller: 'deleteStudent',
+                    templateUrl: 'templates/deleteStudent.html'
+                });
+            })
+            .controller('studentHome', function ($rootScope, $scope, studentService) {
+                console.log("Inside controller studentHome");
+                $scope.allStudent = studentService.getAllStudent();
+                console.log($scope.allStudent);
+
+                $scope.editStudent = function (studentID) {
+                    $rootScope.studentToEditId = studentID;
+                };
+                $scope.deleteStudent = function (studentID) {
+                    $rootScope.studentToDeleteId = studentID;
+                    studentService.delete($rootScope.studentToDeleteId);
+                };
+
+
+            })
+            .controller('addStudent', function ($scope, studentService) {
+                console.log("Inside Controller addStudent");
+                $scope.name;
+                $scope.id;
+                $scope.addNewStudent = function () {
+                    studentService.add($scope.name, $scope.id);
+                }
+
+            })
+            .controller('deleteStudent', function ($scope) {
+                console.log("Inside controller delteStudent");
+            })
+            .controller('updateStudent', function ($rootScope, $scope, studentService) {
+                console.log("Inside controller updateStudent");
+                $scope.idToUpdate = $rootScope.studentToEditId;
+                $scope.nameToUpdate;
+
+                $scope.updateStudent = function () {
+                    console.log("inside update student methd");
+
+                    studentService.update($scope.nameToUpdate, $scope.idToUpdate);
+                }
+
+
+
+
+            });
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
