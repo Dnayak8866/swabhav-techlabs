@@ -1,0 +1,38 @@
+﻿@using EmpDeptMasterPageApp.Models.DepartmentM
+@model AddVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("Add", "Department", FormMethod.Post))
+        {
+            <table>
+                
+                <tr>
+                    <th>Enter Deparment Nmae:</th>
+                    <td>@Html.TextBoxFor((m) => m.DeptName)</td>
+                </tr>
+                <tr>
+                    <th>Enter Department Location:</th>
+                    <td>@Html.TextBoxFor((m) => m.DeptLoc)</td>
+                </tr>
+              
+                
+            </table>
+            <div>
+                <input type="submit" value="Add" />
+            </div>
+        }
+    </div>
+</body>
+</html>

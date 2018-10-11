@@ -1,0 +1,24 @@
+<section class="container">
+    <h1>BlueBox.......</h1>
+    <button  class="btn btn-success" (click)="createButton()">Load Buttons</button>
+    
+    <div class="row">
+        <div class="col-md-5">
+           
+            <div class="row">
+                <label for="chance"  >{{txtNumOfTry}}{{numOfChance}}</label>
+            </div>
+            <div class="row">
+                <label [hidden]="isToPlay" style="color:blue" >Congratulations You Won....</label>
+            </div>
+            
+        </div>
+        <div class="col-md-2"  [style.width.px]="containerWidth">
+            <button [disabled]="btn['isToDisable']" class="btn btn-default" (click)="guess(btn['id'])" [ngStyle]="{'background-color': btn['btnColor']}" [style.margin.px]="btnMargin" [style.width.px]="btnwidth" [style.height.px]="btnheight" *ngFor="let btn of buttons;index as i"   id="{{i+1}}"  innerHtml="{{i+1}}"></button>
+        </div>
+        <div class="col-md-5">
+            
+        </div>
+    </div>
+  
+</section>

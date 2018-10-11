@@ -1,0 +1,56 @@
+﻿@using EmpDeptMasterPageApp.Models.DepartmentM
+@model DepartmentVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MasterLayout.cshtml";
+}
+
+<h2>Department Index page..</h2>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<section>
+    @Html.ActionLink("Add","Add","Department",new { @class= "btn btn-info",@style="margin:10px" })
+    @Html.ActionLink("Display","Index","Department",new {@class="btn btn-success" })
+</section>
+
+<section>
+    @using (Html.BeginForm("Index", "Department", FormMethod.Post))
+    {
+        <table class="table-bordered">
+            <tr>
+                <th>Department ID</th>
+                <th>Department Name</th>
+                <th>Department Location</th>
+                <th>Do Action</th>
+
+            </tr>
+            @{
+                int i = 0;
+                foreach (var dept in @Model.DepartmentList)
+                {
+                    <tr>
+                        <td>
+                            @dept.Id
+                        </td>
+                        <td>
+                            @dept.DeptName
+                        </td>
+                        <td>
+                            @dept.DeptLoc
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = @dept.Id },new { @class= "glyphicon glyphicon-pencil",@style="margin-right:10px" })
+                           
+                        
+                            @Html.ActionLink("ViewEmployees", "ViewEmployees", new { id = @dept.Id },new { @class= "	glyphicon glyphicon-eye-open" })
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+
+        </table>
+
+   }
+</section>
+

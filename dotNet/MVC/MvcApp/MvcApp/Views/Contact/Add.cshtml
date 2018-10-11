@@ -16,7 +16,12 @@
         <h1>Add page...</h1>
         @using (Html.BeginForm("Add", "Contact", FormMethod.Post))
         {
+           
             <table>
+                <tr>
+                    <th>Enter Id:</th>
+                    <td>@Html.TextBoxFor((m) => m.Id)</td>
+                </tr>
                 <tr>
                     <th>Enter FirstName:</th><td>@Html.TextBoxFor((m)=>m.Fname)</td>
                 </tr>
@@ -34,7 +39,7 @@
                 </tr>
             </table>
             <div>
-                <input type="submit" value=" Add"/>
+                <input type="submit" value= "Add"/>
             </div>
         }
     </div>

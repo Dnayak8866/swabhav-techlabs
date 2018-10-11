@@ -45,6 +45,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -198,18 +206,31 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810040710017_ContactMigrated.cs" />
+    <Compile Include="Migrations\201810040710017_ContactMigrated.Designer.cs">
+      <DependentUpon>201810040710017_ContactMigrated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810040754330_UserAdded.cs" />
+    <Compile Include="Migrations\201810040754330_UserAdded.Designer.cs">
+      <DependentUpon>201810040754330_UserAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Color\ColorVm.cs" />
     <Compile Include="Models\Color\ProColor.cs" />
     <Compile Include="Models\Contact\AddVm.cs" />
     <Compile Include="Models\Contact\contact.cs" />
     <Compile Include="Models\Contact\ContactVm.cs" />
+    <Compile Include="Models\Contact\EditVm.cs" />
     <Compile Include="Models\Dept\Department.cs" />
     <Compile Include="Models\Dept\DeptVm.cs" />
     <Compile Include="Models\Dept\Employee.cs" />
     <Compile Include="Models\Login\LoginVm.cs" />
+    <Compile Include="Models\Login\User.cs" />
     <Compile Include="Models\Services\ColorService.cs" />
+    <Compile Include="Models\Services\ContactDbContext.cs" />
     <Compile Include="Models\Services\ContactServices.cs" />
     <Compile Include="Models\Services\DepartmentService.cs" />
+    <Compile Include="Models\Services\LoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +244,7 @@
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Contact\Home.cshtml" />
     <Content Include="Views\Contact\Add.cshtml" />
+    <Content Include="Views\Contact\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -238,6 +260,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810040710017_ContactMigrated.resx">
+      <DependentUpon>201810040710017_ContactMigrated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810040754330_UserAdded.resx">
+      <DependentUpon>201810040754330_UserAdded.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

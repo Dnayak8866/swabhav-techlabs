@@ -15,12 +15,13 @@
     <div> 
         <h1>Contact home..</h1>
         <div class="top-right">
-            @Html.ActionLink("ADD", "Add");
-            @Html.ActionLink("DISPLAY", "Display");
+            @Html.ActionLink("ADD", "Add")
+            @Html.ActionLink("DISPLAY", "Display")
         </div>
         <div>
             <table>
                 <tr>
+                    <th>ID</th>
                     <th>FirstName</th>
                     <th>LastName</th>
                     <th>ContactNo</th>
@@ -30,20 +31,26 @@
                     int i = 0;
                     foreach (var contact in @Model.ContactList)
                     {
-                        <tr>
-                            <td>
+                        
+                            <tr>
+                                @contact.Id
+                            </tr>
+                            <tr>
                                 @contact.Fname
-                            </td>
-                            <td>
+                            </tr>
+                            <tr>
                                 @contact.Lname
-                            </td>
-                            <td>
+                            </tr>
+                            <tr>
                                 @contact.contactNo
-                            </td>
-                            <td>
+                            </tr>
+                            <tr>
                                 @contact.email
-                            </td>
-                        </tr>
+                            </tr>
+                            <tr>
+                                @Html.ActionLink("Edit","Edit",new { id = @contact.Id })
+                            </tr>
+                    
                         i++;
                     }
                 }

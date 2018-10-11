@@ -1,0 +1,28 @@
+<div>
+    <section class="container">
+        <h1>Data Binding......</h1>
+        <h2>Using Expression</h2>
+        <p >    Firstname :{{student["name"]}}
+                Location :{{student["location"]}}
+                CGPA :{{student["cgpa"]}}  
+            </p>
+    </section>
+
+    <section class="container">
+        <h2>Using property syntax</h2>
+        <p [innerHtml]="student.name"></p>
+        <p [innerHtml]="student.location"></p>
+        <p [innerHtml]="student.cgpa" ></p>
+    </section>
+    <img width="300px" height="150px"  [src]="student.photo">
+
+    <h1>ngFor....</h1>
+    <button  (click)="loadStudents()">LoadStudentsInfo</button>
+    <section *ngFor="let s of students">
+            <p [innerHtml]="s.name"></p>
+            <p [innerHtml]="s.location"></p>
+            <p [innerHtml]="s.cgpa" [style.background-color]="calculatecolor(s['cgpa'])" ></p>
+            <img [width]="imageHeight" [height]="imageHeight"  [src]="s.photo">
+    </section>
+
+</div>

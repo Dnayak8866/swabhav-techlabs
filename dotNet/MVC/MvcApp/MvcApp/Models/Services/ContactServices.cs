@@ -1,39 +1,55 @@
 ﻿using MvcApp.Models.Contact;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MvcApp.Models.Services
 {
     public class ContactServices
     {
-        List<contact> contactList;
+
+        private ContactDbContext dbContext;
         public ContactServices()
         {
-            contactList = new List<contact>();
-            contactList.Add(new contact() {contactNo="989898898",Fname="Chandan",Lname="Maharana",email="ascaas@gmail.com"});
-            contactList.Add(new contact() { contactNo = "8866666666", Fname = "Dharmesh", Lname = "Nayak",email="dmax@yahoo.co.in" });
-            contactList.Add(new contact() { contactNo = "903333333", Fname = "Abhi", Lname = "Singh",email="foooo@gmail.com" });
-            contactList.Add(new contact() { contactNo = "96525558888", Fname = "Dhiraj", Lname = "Giti" ,email="fooo@gmail.com"});
-           
+
+
+            dbContext = new ContactDbContext();
 
         }
+
+       
 
         public List<contact> ContactList
         {
             get
             {
-                return contactList;
+                return dbContext.Contacts.ToList();
             }
-            set
-            {
-                contactList = value;
-            }
+            
         }
-
-        public void AddContact(string fname,string lname, string contactno, string email)
+        
+        public void AddContact(int id,string fname,string lname, string contactno, string email)
         {
 
-            contactList.Add(new contact{ contactNo = contactno, Fname = fname, Lname = lname, email = email });
+            dbContext.Contacts.Add(new contact{ Id=id, Fname = fname, Lname = lname, contactNo = contactno, email = email });
+            dbContext.SaveChanges();
+        }
 
+        public contact SearchContact(int id)
+        {
+            contact singleContact = dbContext.Contacts.Select((c) => c).Where((c) => c.Id == id).Single();
+            
+            return singleContact;
+        }
+
+        public void UpdateContact(contact cont)
+        {
+            contact  con = dbContext.Contacts.Where((c)=>c.Id==cont.Id).Single();
+            con.Fname = cont.Fname;
+            con.Lname = cont.Lname;
+            con.contactNo = cont.contactNo;
+            con.email = cont.email;
+            dbContext.SaveChanges();
+            
         }
     }
 }

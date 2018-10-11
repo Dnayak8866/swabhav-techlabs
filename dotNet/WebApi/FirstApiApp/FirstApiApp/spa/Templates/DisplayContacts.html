@@ -1,0 +1,21 @@
+﻿
+ 
+    <section>
+        <div>
+            <button class="btn btn-danger" ng-click="GetAllContacts()">Get All Contacts</button>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>No</th>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat='x in data'>
+                    <td>{{x.Name}}</td>
+                    <td>{{x.No}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </section>
+

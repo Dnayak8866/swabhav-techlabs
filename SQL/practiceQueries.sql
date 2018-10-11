@@ -236,7 +236,27 @@ INSERT INTO MERCHANTS VALUES(4,'merchant4',30000);
 
 
 
+USE Swabhav
+go
+SELECT * FROM dbo.__MigrationHistory
+
+USE Contact
+go
+
+SELECT * FROM dbo.contacts
+SELECT * FROM dbo.Users
+INSERT INTO dbo.Users(Id,Name,Password) VALUES(1,'dharmesh','pass');
+INSERT INTO dbo.Users(Id,Name,Password) VALUES(2,'chandan','pass');
 
 
+Use Swabhav
+go
+
+SELECT * FROM dbo.Departments
+SELECT * FROM dbo.Employees
+
+SELECT * FROM dbo.MovieActors
+SELECT * FROM dbo.Actors
+SELECT * FROM dbo.Movies
 
 

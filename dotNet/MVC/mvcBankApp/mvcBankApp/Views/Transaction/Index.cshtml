@@ -1,0 +1,45 @@
+﻿@using mvcBankApp.Models.TransactionModel
+@model TransactionVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MasterLayout.cshtml";
+}
+
+<h2>Index</h2>
+<section>
+    @using (Html.BeginForm("Index", "Transaction", FormMethod.Post))
+    {
+        <table>
+
+            <tr>
+                <th>Enter Transaction Amount:</th>
+                <td>@Html.TextBoxFor((m) => m.TransactionAmount)</td>
+                <td>@Html.ValidationMessageFor((m) => m.TransactionAmount)</td>
+            </tr>
+
+            <tr>
+                <th>Select Transaction Type:</th>
+               
+                @{
+                    foreach (var type in Model.TransTypeList)
+                    {
+                        <td>
+                            @Html.RadioButtonFor(m => m.SeletedTransactionType, type)
+                            @Html.ValidationMessageFor((m) => m.SeletedTransactionType)
+                            @Html.Label(type)
+                        </td>
+
+
+                    }
+                }
+         
+            </tr>
+
+        </table>
+        <div>
+            <input type="submit" value="Done" />
+        </div>
+    }
+
+</section>
+

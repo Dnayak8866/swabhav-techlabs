@@ -1,4 +1,5 @@
 ﻿using MvcApp.Models.Login;
+using MvcApp.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,18 +19,25 @@ namespace MvcApp.Controllers
                 UserPass = "root"
 
             };
+
+            string methodname=Request.QueryString["actionMethod"];
+            TempData["methodname"] = methodname;
             return View(vm);
         }
        
         [HttpPost]
         public ActionResult Index(LoginVm vm)
         {
-            if (vm.UserName==null|| vm.UserPass==null)
+            LoginService loginservice = new LoginService();
+            
+            if (!(loginservice.AuthenticateUser(vm.UserName,vm.UserPass)))
             {
                 return View(vm);
             }
+            
             Session["user"] = vm.UserName;
-            return RedirectToAction("Index","Home");
+            return RedirectToAction(TempData["methodname"].ToString(), "Contact");
+
         }
     }
 }

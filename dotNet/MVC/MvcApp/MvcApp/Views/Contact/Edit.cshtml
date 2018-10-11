@@ -1,0 +1,38 @@
+﻿@using MvcApp.Models.Contact
+@model EditVm
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    
+        <h1>Edit  page...</h1>
+        @using (Html.BeginForm("Edit", "Contact", FormMethod.Post))
+        {
+
+            
+            <div> Enter ID: @Html.TextBoxFor((m) => m.Id)</div><br />
+                
+            <div>Enter FirstName:@Html.TextBoxFor((m) => m.Fname)</div><br />
+                
+            <div>Enter LastName :@Html.TextBoxFor((m) => m.Lname)</div><br />
+
+            <div>Enter Contact No:@Html.TextBoxFor((m) => m.ContactNo)</div><br />
+                
+            <div>Enter Email:@Html.TextBoxFor((m) => m.Email)</div><br />
+
+
+                <div>
+                    <input type="submit" value="Edit" />
+                </div>
+        }
+    
+</body>
+</html>

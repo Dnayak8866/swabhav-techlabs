@@ -1,0 +1,49 @@
+﻿@using EmpDeptMasterPageApp.Models.EmployeeM
+@model AddVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("Add", "Employee", FormMethod.Post))
+        {
+            <table>
+
+                <tr>
+                    <th>Enter Empployee Name:</th>
+                    <td>@Html.TextBoxFor((e) => e.EmpName)</td>
+                </tr>
+                <tr>
+                    <th>Enter Employee Job:</th>
+                    <td>@Html.TextBoxFor((e) => e.EmpJob)</td>
+                </tr>
+
+                <tr>
+                    <th>Enter Employee Salary:</th>
+                    <td>@Html.TextBoxFor((e) => e.EmpSalary)</td>
+                </tr>
+
+                <tr>
+                    <th>Select Employee Department:</th>
+                    <td>@Html.DropDownListFor((m) => m.SelectedDept, new SelectList(Model.DeptLsit, "Id", "DeptName"))</td>
+                </tr>
+               
+
+
+            </table>
+            <div>
+                <input type="submit" value="Add" />
+            </div>
+
+        }
+    </div>
+</body>
+</html>

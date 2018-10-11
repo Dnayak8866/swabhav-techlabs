@@ -1,0 +1,28 @@
+﻿<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<section>
+    <a href="#displayContact" class="btn btn-primary">DisplayContacts</a>
+    <a href="#addContact" class="btn btn-primary">AddContact</a>
+
+    <div style="margin-top:10px">
+        <input class="form-group" ng-model="inputname" id="name" type="text" placeholder="Enter name" />
+
+        <button class="btn btn-info" ng-click="GetContactByName(inputname)">Search</button>
+
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>No</th>
+
+            </tr>
+            <tr ng-repeat='x in data'>
+
+                <td>{{x.Name}}</td>
+                <td>{{x.No}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+</section>  
+
+    

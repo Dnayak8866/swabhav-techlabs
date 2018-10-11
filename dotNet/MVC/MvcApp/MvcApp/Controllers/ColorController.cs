@@ -15,8 +15,8 @@ namespace MvcApp.Controllers
         {
             ColorService colorservice = new ColorService();
             ColorVm vm = new ColorVm();
-            vm.ColorList = colorservice.ColorList;
-            vm.ColorCount = colorservice.ColorCount;
+           vm.ColorList = colorservice.ColorList;
+           vm.ColorCount = colorservice.ColorCount;
 
 
             return View(vm);

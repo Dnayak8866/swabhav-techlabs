@@ -16,34 +16,27 @@ namespace MvcApp.Controllers
         {
            
             ContactVm vm = new ContactVm();
-            vm.ContactList = contactService.ContactList;
-            if (TempData["contacts"]!=null)
-            {
-              
-                vm.ContactList = TempData["contacts"] as List<contact>;
-            }
-            TempData["contacts"] = vm.ContactList;
+            vm.ContactList = contactService.ContactList; 
             return View(vm);
         }
         public ActionResult Add()
         {
-          
-            AddVm vm = new AddVm() { ContactList = contactService.ContactList };
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Login", new { actionMethod = "Add" });
+            }
+            AddVm vm = new AddVm();
            
             return View(vm);
+           
         }
 
         [HttpPost]
         public ActionResult Add(AddVm vm)
         {
-            
-            contactService.ContactList = TempData["contacts"] as List<contact>;
-            contactService.AddContact(vm.ContactNo,vm.Fname,vm.Lname,vm.Email);
-
-            TempData["contacts"] = contactService.ContactList;
-
-            vm.ContactList = TempData["contacts"] as List<contact>;
-            return RedirectToAction("Home",vm);
+           
+            contactService.AddContact(vm.Id, vm.Fname,vm.Lname,vm.ContactNo,vm.Email);
+            return RedirectToAction("Home");
         }
 
         public ActionResult Display()
@@ -51,7 +44,36 @@ namespace MvcApp.Controllers
             return RedirectToAction("Home");
         }
 
+        
+        public ActionResult Edit(int? id)
+        {
+          
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Index", "Login", new { actionMethod = "Home" });
+            }
+            EditVm vm = new EditVm();
+            contact cont = contactService.SearchContact(Convert.ToInt32(id));
+           
+            
+            vm.Id = cont.Id;
+            vm.Fname = cont.Fname;
+            vm.Lname = cont.Lname;
+            vm.ContactNo = cont.contactNo;
+            vm.Email = cont.email;
+           
+            return View(vm);
+        }
 
+        [HttpPost]
+        public ActionResult Edit(EditVm vm)
+        {
+            contactService.UpdateContact(new contact {Id=vm.Id, Fname=vm.Fname,Lname=vm.Lname,contactNo=vm.ContactNo,email=vm.Email});
+            vm.ContactList = contactService.ContactList;
+            return RedirectToAction("Home");
+        }
+       
+       
 
         
     }

@@ -1,0 +1,18 @@
+<section>
+    <h1>Two Way Binding.....</h1>
+
+    Enter firstname:<input [ngModel]="firstname" (ngModelChange)="firstnameChange($event)" type="text">
+    <h2>{{firstname}}</h2>
+    Enter Lastname:<input [(ngModel)]="lastname" type="text">
+    <h2>{{lastname}}</h2>
+
+    <div>
+        Check Prime or not:<input type="text" [(ngModel)]="num">
+        <button (click)="checkPrimeAsync(num)">Check</button>
+        <p  [innerHtml]="result"></p>
+        {{result}}
+
+    </div>
+    
+
+</section>

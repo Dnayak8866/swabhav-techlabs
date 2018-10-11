@@ -1,0 +1,40 @@
+﻿@using EmpDeptMasterPageApp.Models.DepartmentM
+@model EditVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("Edit", "Department", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <th>Deparment ID:</th>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <th>Enter Deparment Name:</th>
+                    <td>@Html.TextBoxFor((m) => m.DeptName)</td>
+                </tr>
+                <tr>
+                    <th>Enter Department Location:</th>
+                    <td>@Html.TextBoxFor((m) => m.DeptLoc)</td>
+                </tr>
+
+
+            </table>
+            <div>
+                <input type="submit" value="Edit" />
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../scripts/angular.js"></script>
+    <script src="../scripts/angular-route.js"></script>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body ng-app="Contact">
+  
+   
+  
+    <section ng-view>
+
+
+    </section>
+  
+    <script>
+      
+
+        angular.module("Contact", ['ngRoute'])
+            .factory('ContactService', function ($http, $log) {
+                var obj = {};
+
+                obj.getAllContacts = function () {
+                    return $http.get("http://localhost:64914/api/hitech/Contacts/Allcontacts");
+                }
+
+                obj.getContactByName = function (name) {
+                    console.log(name);
+                    return $http.get("http://localhost:64914/api/hitech/Contacts/Contactname/" + name);
+                }
+
+                obj.addContact = function (contact) {
+                    console.log(contact);
+                    return $http.post("http://localhost:64914/api/hitech/Contacts/Addcontact" , contact);
+                }
+
+                return obj;
+
+            })
+            .config(function ($routeProvider) {
+                $routeProvider.when("/", {
+                    controller: "HomeController",
+                    templateUrl: "templates/Home.html"
+                }).when("/addContact", {
+                    controller: "AddController",
+                    templateUrl: "templates/AddContact.html"
+                }).when("/displayContact", {
+                    controller: "DisplayController",
+                    templateUrl: "templates/DisplayContacts.html"
+                });
+            })
+            .controller('HomeController', function (ContactService, $scope) {
+                $scope.inputname = null;
+                $scope.data;
+                $scope.GetContactByName = function (name) {
+
+                    ContactService.getContactByName(name)
+                        .then((response) => {
+                            $scope.data = response.data;
+                        
+                        });
+                }
+
+            })
+            .controller('DisplayController', function (ContactService, $scope) {
+                $scope.inputname = null;
+                $scope.data;
+
+                $scope.GetAllContacts = function () {
+                    ContactService.getAllContacts()
+                    .then((response) => { $scope.data = response.data,console.log(response.data)});
+                }
+
+
+            })
+            .controller('AddController', function (ContactService, $scope) {
+                $scope.contactname;
+                $scope.contactnumber;
+
+                $scope.AddContact = function () {
+                    var contact = {
+                        Name: $scope.contactname,
+                        No: $scope.contactnumber
+                    };
+                    ContactService.addContact(contact);
+                }
+            });
+       
+       
+    </script>
+</body>
+</html>

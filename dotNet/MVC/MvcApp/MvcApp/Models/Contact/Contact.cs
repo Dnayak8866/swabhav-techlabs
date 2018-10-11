@@ -11,6 +11,7 @@ namespace MvcApp.Models.Contact
         public string Lname { get; set; }
         public string contactNo { get; set; }
         public string email { get; set; }
+        public int Id { get; set; }
 
 
     }

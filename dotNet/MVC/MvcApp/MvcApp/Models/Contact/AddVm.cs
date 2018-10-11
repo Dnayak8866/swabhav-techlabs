@@ -7,6 +7,7 @@ namespace MvcApp.Models.Contact
 {
     public class AddVm
     {
+        public int Id { get; set; }
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string ContactNo { get; set; }

@@ -1,0 +1,57 @@
+﻿@using EmpDeptMasterPageApp.Models.EmployeeM
+@model EmployeeVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MasterLayout.cshtml";
+}
+
+<h2>Employees..........</h2>
+<section>
+    @Html.ActionLink("Add", "Add", "Employee", new { @class = "btn btn-info", @style = "margin:10px" })
+    @Html.ActionLink("Display", "Index", "Employee", new { @class = "btn btn-info", @style = "margin:10px" })
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @using (Html.BeginForm("Index", "Department", FormMethod.Post))
+    {
+        <table class="table-bordered">
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Employee Job</th>
+                <th>Employee Salary</th>
+                <th>Employee DeptId</th>
+
+            </tr>
+            @{
+                int i = 0;
+                foreach (var emp in @Model.EmpList)
+                {
+                    <tr>
+                        <td>
+                            @emp.Id
+                        </td>
+                        <td>
+                            @emp.EmpName
+                        </td>
+                        <td>
+                            @emp.EmpJob
+                        </td>
+                        <td>
+                            @emp.EmpSalary
+                        </td>
+                        <td>
+                            @emp.Department.Id
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = @emp.Id })
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+
+        </table>
+
+                }
+
+</section>

@@ -1,0 +1,38 @@
+USE hitech
+go
+CREATE TABLE BANKMASTER(
+acntno INT,
+name VARCHAR(20),
+balance FLOAT,
+password VARCHAR(20),
+date DATETIME,
+PRIMARY KEY(acntno)
+);
+select * from BANKMASTER
+DROP TABLE BANKMASTER
+INSERT  INTO BANKMASTER(acntno,name,balance,password,date) VALUES(111,'DHARMESH',50000,'PASS',GETDATE());
+
+
+
+CREATE TABLE BANK_TRANSACTION(
+acntno INT,
+type VARCHAR(20),
+amount FLOAT,
+date DATETIME,
+FOREIGN KEY(acntno) REFERENCES BANKMASTER(acntno)
+);
+SELECT * FROM BANK_TRANSACTION
+DROP TABLE BANK_TRANSACTION
+
+DELETE FROM BANKMASTER WHERE acntno=222
+USE Swabhav
+go
+SELECT * FROM Departments
+DROP TABLE Departments
+
+
+USE BankDb
+GO
+SELECT * FROM dbo.Accounts
+SELECT * FROM dbo.AccountTransactions
+
