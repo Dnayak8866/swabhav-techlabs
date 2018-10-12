@@ -10,14 +10,15 @@ import {MathServices} from '../swabhavtech/services/MathService';
 import { NumbersComponent } from '../swabhavtech/numberApi/Number.Component';
 import { HttpModule} from '@angular/http';
 import {NumberServices} from '../swabhavtech/services/NumberService';
-
+import{QuestionBankComponent} from '../swabhavtech/QuestionBank/QuestionBank.Component';
 @NgModule({
   declarations: [
    welcomecomponent,
    studentcomponent,
    BlueBoxComponent,
    TwoWayComponent,
-   NumbersComponent
+   NumbersComponent,
+   QuestionBankComponent,
   ],
   imports: [
     BrowserModule,

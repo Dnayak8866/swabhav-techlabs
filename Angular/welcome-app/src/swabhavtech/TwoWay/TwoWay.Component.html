@@ -7,7 +7,7 @@
     <h2>{{lastname}}</h2>
 
     <div>
-        Check Prime or not:<input type="text" [(ngModel)]="num">
+        Check Prime or not:<input [ngStyle]="{'background-color':textboxColor}" (focusout)="checkPrimeAsync(num)" type="text" [(ngModel)]="num">
         <button (click)="checkPrimeAsync(num)">Check</button>
         <p  [innerHtml]="result"></p>
         {{result}}

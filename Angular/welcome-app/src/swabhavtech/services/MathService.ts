@@ -1,4 +1,4 @@
-import {Promise} from "q";
+
 export class MathServices{
 
 
@@ -14,11 +14,12 @@ export class MathServices{
     isPrimeAsync(num:number){
         let result;
 
-        let res=  Promise((resolve,reject)=>{
+        let res= new  Promise((resolve,reject)=>{
             for(let i=2;i<=num/2;i++){
                 if(num%i==0){
                      result="Not a prime...";
                      reject(result);
+                     return;
                 }
             }
             result="Prime number.....";

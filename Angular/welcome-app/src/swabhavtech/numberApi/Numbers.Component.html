@@ -1,21 +1,21 @@
 <section>
 
     <div class="form-group">
-            <input [(ngModel)]="num" type="text" >
-            <button (click)="getFacts(num)">GetFacts</button>
-            <p [innerHtml]="data"></p>
+        <label for="inputnumber">Now facts about a number:</label>
+        <input id="inputnumber" [(ngModel)]="num" type="text" />
+        <button class="btn btn-info" (click)="getFacts(num)">GetFacts</button>
+        <p [innerHtml]="data"></p>
     </div>
-    <div class ="d-flex justify-content-center container" style="margin-top:20px">
-            <table>
-                <tr>
-                    <th>Number</th>
-                    <th>Info</th>
-                </tr>
-                <tr *ngFor=" let x of data">
-                    <td>{{inputnum}}</td>
-                    <td>{{x}}</td>
-                </tr>
-            </table>
-        </div>
-    
+    <!-- <div class="d-flex justify-content-center container" style="margin-top:20px">
+        <table class="table">
+            <tr>
+                <th>Numbers facts...</th>
+            </tr>
+            <tr *ngFor=" let x of data">
+                <td>{{inputnum}}</td>
+                <td>{{x}}</td>
+            </tr>
+        </table>
+    </div> -->
+
 </section>

@@ -1,0 +1,62 @@
+<div class="text-center">
+    <h1>Question Bank App</h1>
+
+</div>
+<section  >
+    <div class="text-center" [hidden]="hideShowResultBtn">
+        <button class="btn btn-info" (click)="checkResult()">Show Results</button>
+    </div>
+    <div [hidden]="hideCongoDiv" class="row">
+        <div class="col-md-5" >
+            <h1 style="color:green" >{{congoText}}</h1>
+        </div>
+        <div class="col-md-5">
+            <h2> No of Correct answer:{{noCorrectAnswers}}<br/>
+                 Percentage:{{percent}}
+            </h2>
+            <h2></h2>
+        </div>
+       
+    </div>
+    <div >
+            <canvas #mycanvas width="500" height="500" style="border:1px solid " [hidden]="hideCanvas"></canvas>
+    </div>
+</section>
+
+<section class="text-center" [hidden]="hideQuestionSection">
+
+
+    <div class="row">
+        <div class="col-md-1">
+            <h2 [innerHtml]="questionObj.id"></h2>
+        </div>
+        <div class="col-md-7   ">
+            <h1 [innerHtml]="questionObj.title"></h1>
+            <!--answers options -->
+
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let option of questionObj.options">
+                    <input name="answer" type="radio" [(ngModel)]="radioVal" value="{{option}}" >{{option}}
+                </li>
+            </ul>
+
+           
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2 ">
+
+        </div>
+        <div class="col-md-5">
+            <div class="text-center">
+                <button [disabled]="disableNextBtn" class="btn btn-success" (click)="showQuestion(index)">Next</button>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section>
+    <h1 [hidden]="hideSelectedAnsText">Selected answer is:{{radioVal}}</h1>
+</section>
+
