@@ -20,7 +20,16 @@ namespace BankApiApp.Controllers
             bankRepo.RegisterAccount(acnt);
             return Ok("Account Registered....");
         }   
-            
+        
+
+
+        [Route("AllAccounts")]    
+        public IHttpActionResult GetAllAccounts()
+        {
+            return Ok(bankRepo.GetAllAccounts());
+        }
+
+
 
     }
 }

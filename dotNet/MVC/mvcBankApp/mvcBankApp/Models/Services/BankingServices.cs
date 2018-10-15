@@ -46,6 +46,7 @@ namespace mvcBankApp.Models.Services
                     {
                         acnt.AccountBalance -= acntTransaction.TransactionAmount;
                     }
+                    acntTransaction.acnt = acnt;
                     _dbContext.AccountTransactions.Add(acntTransaction);
                     _dbContext.SaveChanges();
                     transaction.Commit();

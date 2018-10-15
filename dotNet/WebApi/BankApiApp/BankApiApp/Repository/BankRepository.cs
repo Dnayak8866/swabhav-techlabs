@@ -45,15 +45,16 @@ namespace BankApiApp.Repository
                     {
                         acnt.AccountBalance -= acntTransaction.TransactionAmount;
                     }
+                    acntTransaction.acnt = acnt;
                     _dbContext.AccountTransactions.Add(acntTransaction);
                     _dbContext.SaveChanges();
                     transaction.Commit();
 
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     transaction.Rollback();
-                    throw;
+                    throw e;
                 }
             }
 
@@ -111,6 +112,7 @@ namespace BankApiApp.Repository
 
         public void RegisterAccount(Account entity)
         {
+             entity.AccountCreatedDate = DateTime.Now;
             _dbContext.BankAccounts.Add(entity);
             _dbContext.SaveChanges();
         }

@@ -1,0 +1,72 @@
+<div>
+
+
+    <section class="container">
+        <h2>Using GenderToColorPipe</h2>
+        <p [innerHtml]="student.name"></p>
+        <p [innerHtml]="student.location"></p>
+        <p [ngStyle]="{'color':student.gender | gendertocolor }" [innerHtml]="student.gender"></p>
+
+    </section>
+
+    <section [hidden]="isHideStudentTable">
+        <table class="table">
+            <tr>
+                <th>NAME</th>
+                <th>Location</th>
+                <th>Gender</th>
+            </tr>
+            <tr *ngFor="let s of students">
+                <td>{{s.name}}</td>
+                <td>{{s.location}}</td>
+                <td [ngStyle]="{'background-color':s.gender | gendertocolor }">{{s.gender}}</td>
+                <td>{{s.description | summaryPipe:30 }}</td>
+            </tr>
+        </table>
+    </section>
+
+
+
+    <div class="row">
+        <div class="col-md-5">
+            <button (click)="addStudent()" class="btn btn-secondary">AddStudent</button>
+        </div>
+        <div class="col-md-5">
+            <button (click)="displayStudents()" class="btn btn-secondary">DisplayStudents</button>
+        </div>
+    </div>
+
+    <section [hidden]="isHideForm" class="container" style="margin-bottom: 20px">
+        <input type="text" [(ngModel)]="name" placeholder="Enter student name" class="form-control">
+
+
+        <br />
+        <label style="margin-right: 5px">Gender:</label>
+
+        <input name="gender" [(ngModel)]="radioVal" type="radio" value="male" id="btnRdMale">
+        <label for="btnRdMale">Male</label>
+
+        <input style="margin-left: 10px" name="gender" [(ngModel)]="radioVal" type="radio" value="female" id="btnRdFemale">
+        <label for="btnRdMale">Female</label>
+        <br />
+
+        <textarea [(ngModel)]="description" cols="60" rows="5"></textarea>
+        <br />
+
+        <input type="text" [(ngModel)]="location" placeholder="Enter Location" class="form-control">
+        <button (click)="addStudent()" class="btn btn-primary">Save</button>
+    </section>
+
+    
+    <!-- <img width="300px" height="150px"  [src]="student.photo">
+
+    <h1>ngFor....</h1>
+    <button  (click)="loadStudents()">LoadStudentsInfo</button>
+    <section *ngFor="let s of students">
+            <p [innerHtml]="s.name"></p>
+            <p [innerHtml]="s.location"></p>
+            <p [innerHtml]="s.cgpa" [style.background-color]="calculatecolor(s['cgpa'])" ></p>
+            <img [width]="imageHeight" [height]="imageHeight"  [src]="s.photo">
+    </section> -->
+
+</div>

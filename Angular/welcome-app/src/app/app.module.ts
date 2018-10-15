@@ -11,6 +11,10 @@ import { NumbersComponent } from '../swabhavtech/numberApi/Number.Component';
 import { HttpModule} from '@angular/http';
 import {NumberServices} from '../swabhavtech/services/NumberService';
 import{QuestionBankComponent} from '../swabhavtech/QuestionBank/QuestionBank.Component';
+import {SummaryComponent}from'../swabhavtech/summarypipe/summary.component';
+import {SummaryPipe} from '../swabhavtech/summarypipe/summarypipe';
+import {studentApiComponent} from '../swabhavtech/studentApi/StudentApi.Component';
+import {GenderToColorPipe} from '../swabhavtech/studentApi/GenderToColorPipe';
 @NgModule({
   declarations: [
    welcomecomponent,
@@ -19,6 +23,10 @@ import{QuestionBankComponent} from '../swabhavtech/QuestionBank/QuestionBank.Com
    TwoWayComponent,
    NumbersComponent,
    QuestionBankComponent,
+   SummaryComponent,
+   SummaryPipe,
+   studentApiComponent,
+   GenderToColorPipe
   ],
   imports: [
     BrowserModule,

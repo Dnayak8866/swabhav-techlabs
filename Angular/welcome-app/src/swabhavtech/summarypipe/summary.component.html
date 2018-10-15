@@ -1,0 +1,15 @@
+<section>
+    <h1>
+        Custom piping example...
+    </h1>
+
+    <h2 [innerHtml]="description | summaryPipe:5">
+
+    </h2>
+
+    <div>
+        <h3>Student ID:{{student.id}}</h3>
+        <h3>Student Name:{{student.name}}</h3>
+       <h3 > Description:{{description | summaryPipe:3}}</h3>
+    </div>
+</section>
