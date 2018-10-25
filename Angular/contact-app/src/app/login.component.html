@@ -1,0 +1,8 @@
+<section>
+    <h1>Login page</h1>
+    <div class="container">
+        <label for="user">Enter Userid:</label><input class="form-control" [(ngModel)]="userid" id="user" type="text" >
+        <label for="pass">Enter Password:</label><input class="form-control" [(ngModel)]="password" id="pass" type="text" >
+        <input (click)="checkUser()" class="btn btn-info" value="Login" style="margin:5px" type="button">
+    </div>
+</section>

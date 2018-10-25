@@ -15,6 +15,10 @@ import {SummaryComponent}from'../swabhavtech/summarypipe/summary.component';
 import {SummaryPipe} from '../swabhavtech/summarypipe/summarypipe';
 import {studentApiComponent} from '../swabhavtech/studentApi/StudentApi.Component';
 import {GenderToColorPipe} from '../swabhavtech/studentApi/GenderToColorPipe';
+import { importType } from '@angular/compiler/src/output/output_ast';
+import{ToggleButtonComponent} from '../swabhavtech/parentchild/togglebutton/togglebutton.component';
+import {ParentChildComponent} from '../swabhavtech/parentchild/parentchild.component';
+import {StarRating} from '../swabhavtech/parentchild/starrating/starrating.component';
 @NgModule({
   declarations: [
    welcomecomponent,
@@ -26,7 +30,10 @@ import {GenderToColorPipe} from '../swabhavtech/studentApi/GenderToColorPipe';
    SummaryComponent,
    SummaryPipe,
    studentApiComponent,
-   GenderToColorPipe
+   GenderToColorPipe,
+   ToggleButtonComponent,
+   ParentChildComponent,
+   StarRating,
   ],
   imports: [
     BrowserModule,

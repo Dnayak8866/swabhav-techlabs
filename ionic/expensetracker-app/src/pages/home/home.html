@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      ExpenseTracker
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+          <ion-icon name="power"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let expense of expenses" (click)="cardClicked(expense)">
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>
+            {{expense.category}}
+          </ion-card-title>
+
+          <ion-item>
+            <p>{{expense.date |date: 'yyyy-MM-dd' }}</p>
+            <p item-right> {{expense.description}}</p>
+          </ion-item>
+
+        </ion-card-content>
+
+      </ion-card>
+    </button>
+
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="fabClicked()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title text-center>
+      MyNotes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item-group [reorder]="isToReorder" (ionItemReorder)="reorderItems($event)">
+      <ion-item-sliding *ngFor="let note of getAllNotes()">
+
+        <button ion-item (click)="slidingItemClicked(note)">
+          <ion-title>{{note.title}}</ion-title>
+          <ion-note margin>{{note.description}}</ion-note>
+          <ion-icon [hidden]="isHidePlayIcon" name="play" item-end></ion-icon>
+        </button>
+
+
+        <ion-item-options side="right">
+          <button color="danger" expandable ion-button (click)="deleteBtnClicked(note)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+    </ion-item-group>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <button color="danger" ion-button icon-start margin (click)="btnNewNoteClicked()">
+    <ion-icon name="create"></ion-icon>
+    New Note
+  </button>
+
+  <button color="danger" ion-button icon-end float-right margin (click)="btnReorderClicked()">
+    <ion-icon name="shuffle"></ion-icon>
+    Reorder
+  </button>
+</ion-footer>

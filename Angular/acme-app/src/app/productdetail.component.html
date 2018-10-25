@@ -1,0 +1,50 @@
+<section class="container">
+
+    
+    <div class="panel panel-primary">
+        <div class="panel-heading">Product Detail:{{productname}}</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <table>
+                        <tr>
+                            <td>Name :</td>
+                            <td>{{product.ProductName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Code :</td>
+                            <td>{{product.ProductCode}}</td>
+                        </tr>
+                        <tr>
+                            <td>Description :</td>
+                            <td>{{product.Description}}</td>
+                        </tr>
+                        <tr>
+                            <td>Availabillity :</td>
+                            <td>{{product.ReleaseDate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Price :</td>
+                            <td>{{product.Price|currency}}</td>
+                        </tr>
+                        <tr>
+                            <td>5 Star Rating :</td>
+                            <td>
+                                    <st-starrating [rating]="product.StarRating"></st-starrating>
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+                <div class="col-md-5">
+                    <img width="200px"  class="img-responsive center-block"  [src]="product.ImageUrl">
+                </div>
+            </div>
+
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-default" (click)="goBack()"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+        </div>
+    </div>
+</section>

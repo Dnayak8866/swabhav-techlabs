@@ -1,0 +1,45 @@
+<section class="container">
+    <style>
+
+        th{
+            color:dodgerblue;
+        }
+    </style>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Product List</div>
+        <div class="panel-body">
+            <div style="width:150px;">
+                <label for="productname">Filter By </label><input [(ngModel)]="filterby" (ngModelChange)="SeacrhProducts($event)"
+                    placeholder="Seacrh Product" id="productname" type="text" class="form-control">
+
+            </div>
+            <h2 [hidden]="isHideFilterHeading">Filter By:{{filterby}}</h2>
+            <table class="table">
+
+                <th style="padding:6px"><input (click)="toggleImage()" type="button" [(value)]="btnText" class="btn btn-primary"></th>
+                <th>Product</th>
+                <th>Code</th>
+                <th>Available</th>
+                <th>Price</th>
+                <th>5 Star Rating</th>
+
+                <tr *ngFor="let product of productList" [routerLink]="['/ProductDetail',{pid:product.ProductId}]">
+                    <td>
+                        <div [hidden]="isHide"><img class="img-responsive center-block" width="30px" height="30px"
+                                [src]="product.ImageUrl"></div>
+                    </td>
+                    <td><a [routerLink]="['/ProductDetail',{pid:product.ProductId}]">{{product.ProductName}}</a></td>
+                    <td>{{product.ProductCode}}</td>
+                    <td>{{product.ReleaseDate}}</td>
+                    <td>{{product.Price|currency}}</td>
+                    <td>
+                        <st-starrating [rating]="product.StarRating"></st-starrating>
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,13 @@
+<h1>Rating Component...</h1>
+{{rating}}
+<div (mouseenter)="EmitRating()" (click)="EmitRating()" [style.width.px]="14*rating" style="overflow: hidden;" >
+ 
+    <div [style.width.px]="14*5">
+        <span class="glyphicon glyphicon-star" style="color:teal"></span>
+        <span class="glyphicon glyphicon-star" style="color:teal"></span>
+        <span class="glyphicon glyphicon-star" style="color:teal"></span>
+        <span class="glyphicon glyphicon-star" style="color:teal"></span>
+        <span class="glyphicon glyphicon-star" style="color:teal"></span>
+        
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<section>
+    <h1>Parent component..</h1>
+   <!-- {{msgFromChild}} -->
+    <h2 [innerHtml]="msgFromChild"></h2>
+    <h3 [innerHtml]="ratingFromChild"></h3>
+    <st-togglebutton (statechange)="statechangeHandler($event)" [onStateColor]='"green"' [offStateColor]='"red"' [textinput]='"HiTech"' ></st-togglebutton>
+    <st-starrating (starrating)="currentRating($event)" [rating]='4.5'></st-starrating>
+</section>

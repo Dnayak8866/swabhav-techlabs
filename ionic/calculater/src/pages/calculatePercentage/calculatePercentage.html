@@ -1,0 +1,122 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            PercentageCalculator
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color:#B7F3FA" padding>
+
+    <!-- First card -->
+    <ion-card>
+        <!-- <ion-card-header>What is</ion-card-header> -->
+        <ion-card-content>
+
+            <ion-grid>
+                <ion-row>
+
+                    <ion-col>
+                        <ion-label color="light" style="font-size:20px">What is</ion-label>
+                    </ion-col>
+                    <ion-col text-end>
+                        <ion-badge  color="secondary" padding>{{result1}} </ion-badge>
+                    </ion-col>
+
+
+                </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                        <ion-input [(ngModel)]="inputValueFirst" (ngModelChange)="calculateResultFirst()" type="number"></ion-input>
+                    </ion-col>
+                    <ion-col text-center>
+                        <ion-label color="light" style="font-size:20px;padding-left:5px;padding-right:5px  ">% of</ion-label>
+                    </ion-col>
+                    <ion-col>
+                        <ion-input [(ngModel)]="inputOfValueSecond" (ngModelChange)="calculateResultFirst()" type="number"></ion-input>
+                    </ion-col>
+
+                </ion-row>
+
+            </ion-grid>
+
+
+
+
+        </ion-card-content>
+
+    </ion-card>
+
+    <!-- Second-card -->
+    <ion-card>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row align-items-center>
+                    <ion-col>
+                        <ion-input [(ngModel)]="inputBox3" (ngModelChange)="calculateResultSecond()" type="number"></ion-input>
+                    </ion-col>
+
+                    <ion-col text-center>
+                        <ion-label color="light" style="font-size:20px  ">
+                            is what % of
+                        </ion-label>
+                    </ion-col>
+
+                    <ion-col>
+                        <ion-input [(ngModel)]="inputBox4" (ngModelChange)="calculateResultSecond()" type="number"></ion-input>
+                    </ion-col>
+
+
+                </ion-row>
+                <ion-row>
+                    <ion-col text-end>
+                        <ion-badge color="secondary" padding>{{result2}}%</ion-badge>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <!-- Third Card -->
+    <ion-card>
+        <ion-card-content>
+            <!-- <ion-item style="background-color:slategray">
+               
+            </ion-item> -->
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <h2 style="font-size:20px;color:#f4f4f4;">
+                            {{txt}}
+                        </h2>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-input [(ngModel)]="inputBox5" (ngModelChange)="calculateResultThird()" type="number"></ion-input>
+                    </ion-col>
+
+                    <ion-col text-center>
+                        <ion-label color="light" style="font-size:20px;padding-left:5px;padding-right:5px  ">
+                            to
+                        </ion-label>
+                    </ion-col>
+
+                    <ion-col>
+                        <ion-input [(ngModel)]="inputBox6" (ngModelChange)="calculateResultThird()" type="number"></ion-input>
+                    </ion-col>
+
+                </ion-row>
+                <ion-row>
+                    <ion-col text-end>
+                        <ion-badge  color="secondary" padding>{{result3}} %</ion-badge>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+
+</ion-content>

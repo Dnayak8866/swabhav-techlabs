@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            {{navHeading}}
+        </ion-title>
+        <ion-buttons end>
+            <button  ion-button icon-only [disabled]="isDisableTrash" (click)="deleteExpense()">
+                <ion-icon name="trash"></ion-icon>
+            </button>
+            <button ion-button icon-only (click)="cancel()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+            <button ion-button icon-only [disabled]="!myform.valid" (click)="save()">
+                <ion-icon name="checkmark"></ion-icon>
+            </button>
+        </ion-buttons>
+
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <form #myform="ngForm">
+        <ion-item>
+            <ion-label>Id</ion-label>
+            <ion-input type="number" [disabled]="isInputIdDisable" [(ngModel)]="expense.id" name="expenseId" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Category</ion-label>
+            <ion-select [(ngModel)]="expense.category" name="expenseCategory" required>
+                <ion-option value="food">Food</ion-option>
+                <ion-option value="Travel">Travel</ion-option>
+            </ion-select>
+
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime [(ngModel)]="expense.date" name="expenseDate" required></ion-datetime>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label>Description</ion-label>
+            <ion-input [(ngModel)]="expense.description" name="description" required></ion-input>
+        </ion-item>
+
+
+    </form>
+
+</ion-content>

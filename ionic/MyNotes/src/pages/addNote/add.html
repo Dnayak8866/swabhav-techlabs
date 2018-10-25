@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="danger">
+        <ion-title items-start>
+            {{navHeading}}
+        </ion-title>
+       
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <form #myform="ngForm">
+        <ion-item>
+            <ion-input [(ngModel)]="note.title" type="text" placeholder="Title" name="noteTitle" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-textarea [(ngModel)]="note.description" placeholder="Enter Note description" name="noteDescription" required></ion-textarea>
+        </ion-item>
+
+       <ion-item>
+           <button ion-button [disabled]="!myform.valid" color="danger"  large block (click)="addNote()">Save</button>
+       </ion-item>
+        
+    </form>
+    
+     
+</ion-content>

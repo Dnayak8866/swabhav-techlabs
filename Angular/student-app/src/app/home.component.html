@@ -1,0 +1,48 @@
+<section>
+    <h1>Home Component...</h1>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+    <section class="d-flex justify-content-center" style="margin-top:50px">
+        <table class="table">
+            <tr>
+                <th>Roll-No</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Date-Of-Join</th>
+                <td>Action</td>
+
+            </tr>
+            <tr *ngFor="let x of students">
+                <td>{{x.rollNo}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.age}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.date}}</td>
+                <td>
+                    <a class="badge" [routerLink]="['/edit',{rollno:x.rollNo,name:x.name,age:x.age,email:x.email,date:x.date}]"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                    <a class="btn btn-danger btn-xs" (click)="deleteStudent(x.rollNo)" ><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                </td>
+
+            </tr>
+        </table>
+
+
+    </section>
+</section>

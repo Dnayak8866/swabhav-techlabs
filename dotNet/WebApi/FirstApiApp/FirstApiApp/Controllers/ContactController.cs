@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 
 namespace FirstApiApp.Controllers
 {
+   
     [RoutePrefix("api/hitech/Contacts")]
     public class ContactController: ApiController
     {
@@ -32,6 +34,7 @@ namespace FirstApiApp.Controllers
             return Ok("Contact Added..");
         }
 
+        [EnableCors(origins: "http://localhost", headers: "*", methods: "*")]
         [Route("Contactname/{name:alpha}")]
         public IHttpActionResult GetContactByName(string name)
         {

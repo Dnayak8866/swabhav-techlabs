@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar color="danger">
+        <ion-title>
+            Name Matcher
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item>
+            <ion-label color="dark" floating>Enter First Person Name</ion-label>
+            <ion-input [(ngModel)]="firstPersonName" (ngModelChange)="matchName()"></ion-input>
+            <button ion-button item-end  (click)="pickContactName('fname')">
+                    <ion-icon name="contact"></ion-icon>
+            </button>
+        </ion-item>
+        
+
+        <ion-item>
+            <ion-label color="dark" floating>Enter Second Person Name</ion-label>
+            <ion-input [(ngModel)]="secondPersonName" (ngModelChange)="matchName()"></ion-input>
+            <button ion-button item-end  (click)="pickContactName('sname')">
+                    <ion-icon name="contact"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+
+
+
+    <ion-card >
+        <!-- <ion-card-header color="secondary" >Name Matcher</ion-card-header> -->
+
+        <ion-card-content text-center>
+            <ion-label color="primary" style="font-size:20px">{{firstPersonName}}</ion-label>
+
+            <ion-icon color="danger" name="heart" style="font-size:7em"></ion-icon>
+            <ion-label color="primary" style="font-size:20px">{{secondPersonName}}</ion-label>
+            <ion-badge  color="secondary" style="font-size:30px">{{result}}%</ion-badge>
+        </ion-card-content>
+
+
+    </ion-card>
+
+
+
+
+</ion-content>

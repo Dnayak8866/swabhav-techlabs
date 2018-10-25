@@ -1,0 +1,13 @@
+<section>
+    <h1>Add contact component</h1>
+    <div class="container">
+        <label for="name">Enter name</label>
+        <input id="name" [(ngModel)]="name" class="form-control" type="text">
+        <label for="number">Enter Number</label>
+        <input id="number" [(ngModel)]="num" class="form-control" type="text">
+        <input class="btn btn-primary" style="margin-top:10px" (click)="addContact()" type="button"   value="Save">
+    </div>
+
+   
+ 
+</section>

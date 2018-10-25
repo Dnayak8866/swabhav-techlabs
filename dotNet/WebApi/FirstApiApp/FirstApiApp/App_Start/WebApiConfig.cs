@@ -11,6 +11,8 @@ namespace FirstApiApp
         {
             // Web API configuration and services
 
+            //allowing cross origin requests
+            config.EnableCors();
             // Web API routes
             config.MapHttpAttributeRoutes();
 

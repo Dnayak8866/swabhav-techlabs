@@ -183,6 +183,7 @@
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="spa\Index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +235,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Repository\EntityFramework\" />
+    <Folder Include="spa\Templates\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>

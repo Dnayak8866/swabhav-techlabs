@@ -1,0 +1,13 @@
+
+<section class="container">
+    <h1>Edit Component page....</h1>
+    <div class="form-group">
+        <label for="inputRollNo">Roll No:</label> <input disabled="true"  class="form-control" id="inputRollNo"  type="text" [(ngModel)]="rollNo">
+        <label for="inputName">Name:</label> <input class="form-control" id="inputName" type="text" [(ngModel)]="name">
+        <label for="inputAge">Age:</label> <input class="form-control" id="inputAge"type="text" [(ngModel)]="age">
+        <label for="inputEmail">Email:</label> <input class="form-control" id="inputEmail"type="email" [(ngModel)]="email">
+        <label for="inputDate">Date:</label> <input  class="form-control" id="inputDate"type="date" [(ngModel)]="date">
+ 
+       <input style="margin:5px" type="button" class="btn btn-info"  value="SaveChanges" (click)="updateStudent()">
+     </div>
+</section>
