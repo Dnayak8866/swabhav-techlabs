@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-navbar color="dark">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            Login Details
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h2>Registration page Login details..</h2>
+    <form #myForm="ngForm">
+        <ion-item>
+            <ion-label  floating >Username</ion-label>
+            <ion-input [(ngModel)]="username" type="text" name="username" required></ion-input>
+            
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input  [(ngModel)]="password" type="password" name="password" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Confirm Password</ion-label>
+            <ion-input [(ngModel)]="confirmpass" type="password" name="confirmpass" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Short Name</ion-label>
+            <ion-input [(ngModel)]="shortname" type="text" name="shortname" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Enter the captcha</ion-label>
+            <ion-input [(ngModel)]="captcha" type="text"  name="captcha" required></ion-input>
+        </ion-item>
+
+        <button ion-button (click)="goToSubscriptionDetails()" block color="dark">
+            Next
+        </button>
+
+    </form>
+
+</ion-content>

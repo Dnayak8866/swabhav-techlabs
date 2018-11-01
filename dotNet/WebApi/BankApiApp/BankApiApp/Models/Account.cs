@@ -13,6 +13,7 @@ namespace BankApiApp.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int AccountNo { get; set; }
 
+        
         public string AccountHolderName { get; set; }
         public double AccountBalance { get; set; }
         public string AccountPassword { get; set; }

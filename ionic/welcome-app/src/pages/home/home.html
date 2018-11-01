@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar color="primary" >
+    <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>
       Ionic Blank
     </ion-title>
@@ -9,3 +12,31 @@
 <ion-content padding>
   <h2 >{{msg}}</h2>
 </ion-content>
+
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+        <ion-title>
+          Menus
+        </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="openPage(AboutPage)">
+        About
+      </button>
+
+      <button ion-item (click)="openPage(CareerPage)">
+        Career
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage">
+
+</ion-nav>
+
+
