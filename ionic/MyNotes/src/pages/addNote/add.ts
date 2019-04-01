@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { NotesTrackerService } from "../../services/NotesTrackerService";
 import { INote } from "../../services/INote";
@@ -9,7 +9,7 @@ export class AddPage{
     note:INote;
     navHeading="Add Note";
     noteIndex:number; 
-    constructor(private _navCtrl:NavController,private _noteTrackerService:NotesTrackerService,private _navparams:NavParams){
+    constructor(private _navCtrl:NavController,private _noteTrackerService:NotesTrackerService,private _navparams:NavParams,public element:ElementRef){
         if(this._navparams.get("singleNote")!=null){
             this.note = Object.assign({},this._navparams.get("singleNote"));
             this.noteIndex = this._noteTrackerService.getIndexOfNote(this.note);
@@ -21,7 +21,18 @@ export class AddPage{
             description:""
         }
     }
+    ngOnInit(): void {
+        setTimeout(() => {
+            this.adjust();
+        }, 500);
+    }
 
+    adjust(): void {
+        let ta = this.element.nativeElement.querySelector("textarea");
+        ta.style.overflow = "hidden";
+        ta.style.height = "auto";
+        ta.style.height = ta.scrollHeight + "px";
+      }
     addNote(){
         if(this._navparams.get("singleNote")!=null){
             console.log("not null note");

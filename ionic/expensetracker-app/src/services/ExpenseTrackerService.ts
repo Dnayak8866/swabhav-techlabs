@@ -60,7 +60,7 @@ export class ExpenseTrackerService {
         this.updateLocalStorage();
     }
 
-    deleteExpense(expense: IExpense) {
+    deleteExpense(expense: IExpense) {  
         for (let index = 0; index < this.expenses.length; index++) {
             if (expense.id == this.expenses[index].id) {
                 this.expenses.splice(index, 1);
@@ -69,7 +69,7 @@ export class ExpenseTrackerService {
             }
         }
     }
-
+    
     updateLocalStorage() {
         localStorage["Expenses"] = JSON.stringify(this.expenses);
     }

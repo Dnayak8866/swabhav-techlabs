@@ -1,0 +1,102 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            EditPayee
+        </ion-title>
+        <ion-buttons end>
+
+            <button ion-button icon-only (click)="deletePayee()">
+                <ion-icon name="trash"></ion-icon>
+            </button>
+
+            <!-- <button ion-button icon-only [disabled]="isDisableTrash" (click)="deletePayee()">
+                <ion-icon name="trash"></ion-icon>
+            </button>
+            <button ion-button icon-only (click)="cancel()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+            <button ion-button icon-only [disabled]="!myform.valid" (click)="save()">
+                <ion-icon name="checkmark"></ion-icon>
+            </button> -->
+        </ion-buttons>
+
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+    <form #myform="ngForm">
+
+
+        <ion-item>
+            <ion-input [(ngModel)]="payee.name" name="name" required></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-icon item-start name="calendar"></ion-icon>
+            <ion-label>Paid Date</ion-label>
+            <ion-datetime [(ngModel)]="selectedDate" name="paiddate" required></ion-datetime>
+        </ion-item>
+
+
+        <ion-card>
+            <ion-card-content>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="secondary" style="font-size:20px  ">
+                                Total Amount:
+                            </ion-label>
+                        </ion-col>
+                        <ion-col>
+                            <ion-badge color="secondary" padding>₹{{totalAmount}}</ion-badge>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row radio-group [(ngModel)]="creditOrDebit" name="radioGroup" required>
+                        <ion-col>
+                            <ion-item color="danger" style="font-size:20px">
+                                <ion-label color="light">Debit</ion-label>
+                                <ion-radio value="debit" color="dark" ></ion-radio>
+                            </ion-item>
+                        </ion-col>
+
+                        <ion-col>
+                            <ion-item color="secondary">
+                                <ion-label color="light" style="font-size:20px">Credit</ion-label>
+                                <ion-radio value="credit" color="dark" ></ion-radio>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col>
+                            <ion-input placeholder="Enter Amount:₹" id="rounded" type="number" [(ngModel)]="amountRecieved"
+                                name="amount" required></ion-input>
+                        </ion-col>
+
+                    </ion-row>
+
+                    <ion-row margin>
+
+                        <button ion-button [disabled]="!myform.valid" color="dark" (click)="btnDoneClick()" round full>Done</button>
+                    </ion-row>
+                </ion-grid>
+
+            </ion-card-content>
+
+        </ion-card>
+
+
+
+
+
+
+    </form>
+
+
+
+
+
+
+</ion-content>

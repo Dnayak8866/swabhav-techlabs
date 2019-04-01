@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            Add Payee
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list >
+
+        <ion-item margin>
+            <ion-label floating>Name</ion-label>
+            <ion-input id="rounded" [(ngModel)]="name" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item margin>
+            <ion-label floating>Amount</ion-label>
+            <ion-input [(ngModel)]="amount" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item margin>
+            <ion-icon item-start name="calendar"></ion-icon>
+            <ion-input type="text" [(ngModel)]="selectedDate" (ionFocus)="SelectDate()" placeholder="Select Date"></ion-input>
+        </ion-item>
+
+        <button (click)="SavePayee()" ion-button icon-start full>
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            Save
+        </button>
+
+    </ion-list>
+</ion-content>
+
+
+

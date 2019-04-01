@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      My Money
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content [hidden]="isHideBaseContent" padding>
+
+  <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+
+  <ion-list>
+    <button ion-item *ngFor="let payee of payees" (click)="cardClicked(payee)">
+      <ion-card style="border-radius : 8px;">
+        <ion-card-content>
+          <ion-card-title style="font-size:20px;color:white;">
+            <ion-row>
+              <ion-col>
+                <ion-icon name="person"></ion-icon>
+                {{payee.name}}
+              </ion-col>
+
+            </ion-row>
+
+          </ion-card-title>
+        </ion-card-content>
+
+
+
+        <ion-row>
+          <ion-col>
+            <ion-badge color="secondary" item-start>₹{{payee.amount}}</ion-badge>
+          </ion-col>
+
+          <ion-col center text-center>
+            <ion-note>
+              {{payee.date |date: 'yyyy-MM-dd' }}
+            </ion-note>
+          </ion-col>
+        </ion-row>
+
+      </ion-card>
+    </button>
+
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab (click)="fabbtn_Clicked()" color="primary">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
+
+
+
+

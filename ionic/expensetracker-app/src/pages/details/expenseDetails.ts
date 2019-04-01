@@ -19,6 +19,7 @@ export class ExpenseDetailPage {
         this.isDisableTrash = false;
         this.navHeading = "Expense Edit";
 
+        //object is cloned else it will reflect the original/source object
         this.expense = Object.assign({}, this._navparams.get('expObj'));
         if (this._navparams.get('expObj') == null) {
             console.log("expense is  null");
